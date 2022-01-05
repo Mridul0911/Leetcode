@@ -1,6 +1,5 @@
 class Solution {
 public:
-        
         bool isSubset(vector<int> &nums,int n,int sum,vector<vector<int>>& dp)
         {
                 if(sum==0)
@@ -11,15 +10,15 @@ public:
                 {
                         return false;
                 }
-                if(dp[n-1][sum]!=-1)
+                if(dp[n][sum]!=-1)
                 {
-                        return dp[n-1][sum];
+                        return dp[n][sum];
                 }
                   if(sum<nums[n-1])
                    {
-                      return  dp[n-1][sum]=isSubset(nums,n-1,sum,dp);
+                      return  dp[n][sum]=isSubset(nums,n-1,sum,dp);
                    }
-        return  dp[n-1][sum]=(isSubset(nums,n-1,sum-nums[n-1],dp)||isSubset(nums,n-1,sum,dp));        
+        return  dp[n][sum]=(isSubset(nums,n-1,sum-nums[n-1],dp)||isSubset(nums,n-1,sum,dp));        
         }
     bool canPartition(vector<int>& nums) {
         int sum=0;
