@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<string> subdomainVisits(vector<string>& cpdomains) {
      vector<string> ans;
-            unordered_map<string,int> mp;
+            map<string,int> mp;
             for(auto i:cpdomains)
             {
                     string s=i;
