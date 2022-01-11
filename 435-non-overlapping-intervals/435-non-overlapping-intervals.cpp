@@ -1,22 +1,38 @@
-bool comp(vector<int> &a,vector<int> &b) {
-	return a[1]<b[1];
-}
 class Solution {
+        static bool cmp(vector<int> &a,vector<int> &b)
+        {
+                return a[1]<b[1];
+        }
 public:
-         int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-		int ans=-1;      
-		if(intervals.size()==0) return 0;       
-		sort(intervals.begin(),intervals.end(),comp);     
-		vector<int> prev= intervals[0];
-
-		for(vector<int> i: intervals) 
-                {
-			if(prev[1]>i[0]) 
-                        {
-				ans++;   
-			}
-                        else prev=i;    
-		}
-		return ans;              
-	}
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+       sort(intervals.begin(),intervals.end(),cmp);
+//             for(auto i:intervals)
+//             {
+//                     for(auto gg:i)
+//                     {
+//                             cout<<gg<<" ";
+//                     }
+//                     cout<<endl;
+//             }
+//             return 0;
+           auto i=intervals[0];
+            int ans=0;
+           for(auto gg:intervals)
+           {
+                   if(i[1]>gg[0])
+                   {
+                      ans++;     
+                   }
+                   else
+                   {
+                           i=gg;
+                   }
+           }
+            return ans-1;
+            
+            
+            
+            
+            
+    }
 };
