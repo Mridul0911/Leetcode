@@ -1,69 +1,77 @@
 class Solution {
 public:
     bool isRobotBounded(string instructions) {
-        
-     char current_dir = 'N';
-        int x = 0, y= 0;
-        for(int i=0;i<instructions.length();i++){ 
-            if(instructions[i] == 'G')
+         int x=0;
+            int y=0;
+            char curr_dir='N';
+            for(int i=0;i<instructions.length();i++)
             {
-                y += current_dir =='N' ? 1 : 0;
-				y += current_dir =='S' ? -1 : 0;
-				x += current_dir == 'E' ? 1 : 0;
-				x += current_dir == 'W' ? -1 : 0;
+                    if(instructions[i]=='G')
+                    {
+                            y+=curr_dir=='N' ? 1:0;
+                            y+=curr_dir=='S' ? -1:0;
+                            x+=curr_dir=='E' ? 1:0;
+                            x+=curr_dir=='W' ? -1:0;
+                    }
+                    else
+                    {
+                            char dir=instructions[i];
+                            if(curr_dir=='N')
+                            {
+                                    if(dir=='L')
+                                    {
+                                            curr_dir='W';
+                                    }
+                                    else
+                                    {
+                                            curr_dir='E';
+                                    }
+                            }
+                            else if(curr_dir=='W')
+                            {
+                                    if(dir=='L')
+                                    {
+                                            curr_dir='S';
+                                    }
+                                    else
+                                    {
+                                            curr_dir='N';
+                                    }
+                                    
+                            }
+                            else if(curr_dir=='E')
+                            {
+                                    if(dir=='L')
+                                    {
+                                            curr_dir='N';
+                                    }
+                                    else
+                                    {
+                                            curr_dir='S';
+                                    }
+                                            
+                            }
+                            else
+                            {
+                                if(dir=='L')
+                                {
+                                        curr_dir='E';
+                                }
+                                    else
+                                    {
+                                            curr_dir='W';
+                                    }
+                            }
+                    }
             }
-            else
+            if(x==0 && y==0 || curr_dir!='N')
             {
-                char incoming = instructions[i];
-                if(current_dir == 'N'){
-                    if(incoming=='L')
-                    {
-                            current_dir='W';
-                    }
-                    else
-                    {
-                                current_dir='E';
-                    }
-                 }
-                else if(current_dir == 'W'){
-                    if(incoming=='L')
-                    {
-                            current_dir='S';
-                    }
-                    else
-                    {
-                                current_dir='N';
-                    }
-                }
-                else if(current_dir == 'S'){
-                    if(incoming=='L')
-                    {
-                            current_dir='E';
-                    }
-                    else
-                    {
-                                current_dir='W';
-                    }
-          
-                }
-                else{
-                                  if(incoming=='L')
-                    {
-                            current_dir='N';
-                    }
-                    else
-                    {
-                                current_dir='S';
-                    }
-           }
-            } 
-            
-        }
-        
-        if(x==0 && y==0 || current_dir!='N')
-            return true;
-        
-        return false;
+                    return true;
+            }
+            return false;
+                
+             
+             
             
             
     }
