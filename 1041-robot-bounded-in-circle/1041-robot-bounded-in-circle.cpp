@@ -2,44 +2,68 @@ class Solution {
 public:
     bool isRobotBounded(string instructions) {
         
-            vector<int> dir(2);
-            dir[0]=0;
-            dir[1]=1;
-            vector<int> pos(2);
-            pos[0]=0;
-            pos[1]=0;
-           for(int i=0;i<instructions.size();i++)
-           {
-                   if(instructions[i]=='R')
-                   {
-                        dir={dir[1],-dir[0]};
-                   }
-                   else if(instructions[i]=='L')
-                   {
-                         dir={-dir[1], dir[0]};
-                   }
-                   else
-                   {
-                           pos[0]=pos[0]+dir[0];
-                           pos[1]=pos[1]+dir[1];
-                   }
-           }
-            if(pos[0]==0 && pos[1]==0)
+     char current_dir = 'N';
+        int x = 0, y= 0;
+        for(int i=0;i<instructions.length();i++){ 
+            if(instructions[i] == 'G')
             {
-                 return true;        
-            }
-            else if(dir[0]!=0 || dir[1]!=1)
-            {
-                    return true;
+                y += current_dir =='N' ? 1 : 0;
+				y += current_dir =='S' ? -1 : 0;
+				x += current_dir == 'E' ? 1 : 0;
+				x += current_dir == 'W' ? -1 : 0;
             }
             else
             {
-                    return false;
-            }
-                   
+                char incoming = instructions[i];
+                if(current_dir == 'N'){
+                    if(incoming=='L')
+                    {
+                            current_dir='W';
+                    }
+                    else
+                    {
+                                current_dir='E';
+                    }
+                 }
+                else if(current_dir == 'W'){
+                    if(incoming=='L')
+                    {
+                            current_dir='S';
+                    }
+                    else
+                    {
+                                current_dir='N';
+                    }
+                }
+                else if(current_dir == 'S'){
+                    if(incoming=='L')
+                    {
+                            current_dir='E';
+                    }
+                    else
+                    {
+                                current_dir='W';
+                    }
+          
+                }
+                else{
+                                  if(incoming=='L')
+                    {
+                            current_dir='N';
+                    }
+                    else
+                    {
+                                current_dir='S';
+                    }
+           }
+            } 
             
-                   
-            
+        }
+        
+        if(x==0 && y==0 || current_dir!='N')
+            return true;
+        
+        return false;
             
             
     }
