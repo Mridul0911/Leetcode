@@ -1,6 +1,6 @@
 class Solution {
 public:
-        void permut(int index,vector<int> &nums,vector<int> &ds,vector<vector<int>> &ans)
+        void permut(int index,vector<int> nums,vector<int> &ds,vector<vector<int>> &ans)
         {
                 if(index==nums.size())
                 {
@@ -8,9 +8,11 @@ public:
                 }
                 for(int i=index;i<nums.size();i++)
                 {
+                        if (i!=index && nums[i]==nums[index]) continue;
                         swap(nums[index],nums[i]);
                         permut(index+1,nums,ds,ans);
-                        swap(nums[index],nums[i]);
+                       // swap(nums[index],nums[i]);
+                        
                 }
         }
     vector<vector<int>> permute(vector<int>& nums) {
