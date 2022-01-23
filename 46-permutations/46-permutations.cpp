@@ -8,7 +8,7 @@ public:
                 }
                 for(int i=index;i<nums.size();i++)
                 {
-                        if (i!=index && nums[i]==nums[index]) continue;
+                       // if (i!=index && nums[i]==nums[index]) continue;
                         swap(nums[index],nums[i]);
                         permut(index+1,nums,ds,ans);
                        // swap(nums[index],nums[i]);
