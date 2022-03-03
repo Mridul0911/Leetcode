@@ -13,8 +13,8 @@ public:
                 }
                 if(nums[start+1]-nums[start]==nums[start+2]-nums[start+1])
                 {
-                        count++;
-                        return dp[start][count]=count+solve(nums,start+1,count);
+                        
+                        return dp[start][count]=(count+1)+solve(nums,start+1,count+1);
                 }
                 else
                 {
