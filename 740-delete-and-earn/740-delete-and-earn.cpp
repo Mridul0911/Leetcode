@@ -37,7 +37,7 @@ int deleteAndEarn(vector<int>& nums)
                 maxi=max(maxi,nums[i]);
         }
         cout<<maxi<<endl;
-        vector<int> inp(maxi+1,0);
+        vector<int> inp(10001,0);
         for(int i=0;i<nums.size();i++)
         {
             inp[nums[i]]++;
