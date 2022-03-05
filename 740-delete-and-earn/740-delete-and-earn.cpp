@@ -30,24 +30,19 @@ int find(vector<int> &nums,int idx,vector<int> &dp)
 }
 int deleteAndEarn(vector<int>& nums) 
 {
-        vector<int> dp(10001,0);
-        vector<int> count(10001,0);
-        
+        vector<int> dp(10001,-1);
+       int maxi=INT_MIN;
         for(int i=0;i<nums.size();i++)
         {
-            count[nums[i]]++;
+                maxi=max(maxi,nums[i]);
         }
-        
-        dp[0] = 0;
-        dp[1] = count[1] * 1;
- 
-        for(int i = 2; i < count.size(); i++)
+        cout<<maxi<<endl;
+        vector<int> inp(maxi+1,0);
+        for(int i=0;i<nums.size();i++)
         {
-            int choose = count[i] * i + dp[i - 2];
-            int notChoose = dp[i - 1];
-            dp[i] = max(choose, notChoose);
+            inp[nums[i]]++;
         }
-       return dp[dp.size()-1];
-}
         
+        return find(inp,0,dp);
+}
 };
