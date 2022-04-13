@@ -1,23 +1,39 @@
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
-        int p=1;
-        int i=0,j=0,r=n,c=n;
-        vector<vector<int>> v(n,vector<int>(n));
-        while(i<r && j<c){
-            for(int k=j;k<c;k++) v[i][k]=p++;
-            i++;
-            for(int k=i;k<r;k++) v[k][c-1]=p++;
-            c--;
-            if(j<c){
-                for(int k=c-1;k>=j;k--) v[r-1][k]=p++;
-                r--;
+       vector<vector<int>> ans(n,vector<int> (n));
+          int i=0;
+            int j=0;
+            int p=1;
+            int r=n;
+            int c=n;
+           while(i<r && j<c)
+           {
+                   for(int k=j;k<r;k++)
+                   {
+                           ans[i][k]=p++;
+                   }
+                   i++;
+                   for(int k=i;k<c;k++)
+                   {
+                           ans[k][c-1]=p++;
+                   }
+                   c--;
+                   if(j<c)
+                   {
+                           for(int k=c-1;k>=j;k--)
+                           {
+                                   ans[r-1][k]=p++;
+                           }
+                           r--;
+                   }
+                   if(i<r)
+                   {
+                         for(int k=r-1;k>=i;k--) ans[k][j]=p++;
+                            j++;
+                   }
             }
-            if(i<r){
-                for(int k=r-1;k>=i;k--) v[k][j]=p++;
-                j++;
-            }
-        }
-        return v;
+            return ans;
+            
     }
 };
