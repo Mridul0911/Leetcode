@@ -5,7 +5,7 @@
 using namespace std;
 
  // } Driver Code Ends
-// User function Template for C++
+
 
 class Solution{
 public:
@@ -20,7 +20,6 @@ public:
       
       queue<pair<int,int>> q;
       q.push({1,0});
-      vis[1]=true;
       int step=0;
       while(!q.empty())
       {
@@ -34,8 +33,6 @@ public:
           q.pop();
           for(int j=ii+1;j<=ii+6 && j<=30;j++)
           {
-              if(!vis[j])
-              {
                   	pair<int,int> pp;
                   	pp.second=step+1;
                   if(moves[j]!=-1)
@@ -47,7 +44,6 @@ public:
                       pp.first=j;
                   }
                   q.push(pp);
-              }
           }
       }
       return step;
