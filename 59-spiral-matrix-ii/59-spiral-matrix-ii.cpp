@@ -9,12 +9,12 @@ public:
             int c=n;
            while(i<r && j<c)
            {
-                   for(int k=j;k<r;k++)
+                   for(int k=j;k<c;k++)
                    {
                            ans[i][k]=p++;
                    }
                    i++;
-                   for(int k=i;k<c;k++)
+                   for(int k=i;k<r;k++)
                    {
                            ans[k][c-1]=p++;
                    }
