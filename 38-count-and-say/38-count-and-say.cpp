@@ -2,6 +2,8 @@ class Solution {
 public:
         
     string countAndSay(int n) {
+            ios_base::sync_with_stdio(false);
+    cin.tie(NULL);  
         string ans="1";
             unordered_map<char,int> ump;
             string temp;
