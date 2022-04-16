@@ -1,9 +1,12 @@
 class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
-        int i=0;
+        ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+            int i=0;
          int j=1;
-            set<int> s;
+            unordered_set<int> s;
             int n=nums.size();
             int sum=nums[0];
             s.insert(nums[0]);
