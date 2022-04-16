@@ -1,28 +1,34 @@
 class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
-         int res = 0;
-        int currsum = 0;
-            int i = 0;
-        int j = 0;
-          int m[100001] = {};
+        ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+            int i=0;
+         int j=1;
+            unordered_set<int> s;
             int n=nums.size();
-         
-            while( j < nums.size())
+            int sum=nums[0];
+            s.insert(nums[0]);
+            int maxsum = sum;
+            while(i<n-1 && j<n)
             {
-             if(m[nums[j]])
-             { 
-                while( m[nums[j]]){
-                    currsum -= nums[i];
-                    m[nums[i]]--;
-                    ++i;
-                }
-             }
-             m[nums[j]]++;
-             currsum += nums[j];
-             res = max (res, currsum);
-             ++j;
-           }
-        return res;
-     }
+                    bool it=s.find(nums[j])!=s.end();
+                    if(!it)
+                    {
+                            sum+=nums[j];
+                            maxsum=max(maxsum,sum);
+                            s.insert(nums[j]);
+                            j++;
+                    }
+                    else
+                    {
+                       sum-=nums[i];
+                            s.erase(nums[i]);
+                            i++;
+                    }
+            }
+            return maxsum;
+            
+    }
 };
