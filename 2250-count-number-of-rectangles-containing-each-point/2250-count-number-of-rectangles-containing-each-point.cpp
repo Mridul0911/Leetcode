@@ -1,7 +1,9 @@
 class Solution {
 public:
     vector<int> countRectangles(vector<vector<int>>& rectangles, vector<vector<int>>& points) {
-        vector<vector<int>> inp(101);
+       ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+            vector<vector<int>> inp(101);
             for(auto it:rectangles)
             {
                     inp[it[1]].push_back(it[0]);
