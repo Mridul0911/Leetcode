@@ -1,12 +1,12 @@
 class Solution {
 public:
     vector<int> countRectangles(vector<vector<int>>& rectangles, vector<vector<int>>& points) {
-        vector<vector<int>> inp(201);
+        vector<vector<int>> inp(101);
             for(auto it:rectangles)
             {
                     inp[it[1]].push_back(it[0]);
             }
-            for(int i=0;i<=200;i++)
+            for(int i=1;i<=100;i++)
             {
                     sort(inp[i].begin(),inp[i].end());
             }
