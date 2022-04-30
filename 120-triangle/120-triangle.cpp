@@ -1,5 +1,6 @@
 class Solution {
 public:
+        //recursive approach 
         int find(int i,int j,vector<vector<int>> &traingle,vector<vector<int>> &dp)
         {
                 if(i==traingle.size()-1)
@@ -14,6 +15,7 @@ public:
                 int dig=traingle[i][j]+find(i+1,j+1,traingle,dp);
                 return dp[i][j]=min(down,dig);
         }
+        //By dynamic programming
     int minimumTotal(vector<vector<int>>& triangle) {
             int n=triangle.size();
             vector<vector<int>> dp(n+1,vector<int>(n+1,0));
@@ -35,4 +37,23 @@ public:
             }
             return front[0];
     }
+       /* int minimumTotal(vector<vector<int>>& triangle) {
+            int n=triangle.size();
+            vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+            for(int i=0;i<n;i++)
+            {
+                    dp[n-1][i]=triangle[n-1][i];
+            }
+            for(int i=n-2;i>=0;i--)
+            {
+                    for(int j=i;j>=0;j--)
+                    {
+                            int down=triangle[i][j]+dp[i+1][j];
+                            int dig=triangle[i][j]+dp[i+1][j+1];
+                            dp[i][j]=min(down,dig);
+                    }
+            }
+            return dp[0][0];
+          
+    }*/
 };
