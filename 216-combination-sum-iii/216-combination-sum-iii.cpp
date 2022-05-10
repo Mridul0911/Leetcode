@@ -11,19 +11,18 @@ public:
                 }
                 for(int i=index;i<nums.size();i++)
                 {
-                        if(i>index && nums[i]==nums[i-1]) continue;
-                        if(nums[i]>target)
-                        {
-                                break;
-                        }
+                      //  if(i>index && nums[i]==nums[i-1]) continue;
+                       // if(nums[i]>target)
+                        //{
+                   //             break;
+                       // }
                         ds.push_back(nums[i]);
                         subsq(i+1,ans,ds,nums,k,target-nums[i]);
                         ds.pop_back();
                 }
-                
         }
-    vector<vector<int>> combinationSum3(int k, int n) {
-        
+    vector<vector<int>> combinationSum3(int k, int n) 
+    {
             vector<int> nums;
             for(int i=1;i<=9;i++)
             {
@@ -33,8 +32,5 @@ public:
             vector<int> inp;
             subsq(0,ans,inp,nums,k,n);
             return ans;
-            
-            
-            
     }
 };
