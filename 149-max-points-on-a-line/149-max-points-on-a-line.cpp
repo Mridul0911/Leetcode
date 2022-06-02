@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxPoints(vector<vector<int>>& points) {
-         //sort(points.begin(),points.end());
+         sort(points.begin(),points.end());
         int count=0;
         if(points.size()==1)
         {
