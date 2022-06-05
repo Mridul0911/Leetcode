@@ -1,5 +1,6 @@
 class Solution {
 public:
+        int count=0;
       bool isValid(int row,int col,vector<string> board,int n)
         {
                 int currRow=row;
@@ -33,13 +34,11 @@ public:
                 }
                 return true;
         }
-        void solve(vector<vector<string>> &ans,vector<string> &board,int n,int col)
+        void solve(vector<string> &board,int n,int col)
         {
-                cout<<"HELLO";
                 if(col==n)
                 {
-                        ans.push_back(board);
-                        
+                        count++;
                         return;
                 }
                 for(int row=0;row<n;row++)
@@ -47,21 +46,20 @@ public:
                         if(isValid(row,col,board,n))
                         {
                                 board[row][col]='Q';
-                                solve(ans,board,n,col+1);
+                                solve(board,n,col+1);
                                 board[row][col]='.';
                         }
                 }
-                
         }
     int totalNQueens(int n) {
-        vector<vector<string>> ans;
             vector<string> board(n);
             string s(n,'.');
+            count=0;
             for(int i=0;i<n;i++)
             {
                     board[i]=s;
             }
-            solve(ans,board,n,0);
-            return ans.size();
+            solve(board,n,0);
+            return count;
     }
 };
