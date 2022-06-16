@@ -18,7 +18,8 @@ public:
             {
                     for(int j=i;j<n;j++)
                     {
-                            if(s[i]==s[j] && check(i+1,j-1,palin)){
+                            if(s[i]==s[j] && check(i+1,j-1,palin))
+                            {
                                     palin[i][j]=true;
                                     if(j-i+1>max)
                                     {
