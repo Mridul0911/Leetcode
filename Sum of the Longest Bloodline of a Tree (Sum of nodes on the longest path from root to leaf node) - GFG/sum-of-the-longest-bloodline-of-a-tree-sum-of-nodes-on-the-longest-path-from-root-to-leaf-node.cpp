@@ -101,48 +101,30 @@ Node *buildTree(string str)
 class Solution
 {
 public:
-    void wse(Node *root,vector<int> ans,vector<pair<int,int>> &m)
-    {
-        if(root==NULL)
-        {
-            return;
-        }
-        ans.push_back(root->data);
-        wse(root->left,ans,m);
-        if(root->left==NULL && root->right==NULL)
-        {
-           int sum=0;
-            for(int i=0;i<ans.size();i++)
-            {
-             sum+=ans[i];   
-            }
-           m.push_back({sum,ans.size()});
-        }
-        wse(root->right,ans,m);
-        ans.pop_back();
-    }
+   void find(Node *root,int val,int len,int &ans,int &maxlen)
+   {
+       if(root==NULL) return;
+       if(root->left==NULL && root->right==NULL)
+       {
+           if(len>=maxlen)
+           {
+               maxlen=len;
+               ans=max(ans,val+root->data);
+           }
+           return;
+       }
+       find(root->left,val+root->data,len+1,ans,maxlen);
+       find(root->right,val+root->data,len+1,ans,maxlen);
+       
+   }
+   
     int sumOfLongRootToLeafPath(Node *root)
     {
         //code here
-        int sum=0;
-        vector<int> ans;
-        vector<pair<int,int>> m;
-        wse(root,ans,m);
-        int x=0;
-        int final=0;
-        for(auto i:m)
-        {
-            if(i.second>x)
-            {
-                final=i.first;
-                x=i.second;
-            }
-            if(i.second==x)
-            {
-                final=max(final,i.first);
-            }
-        }
-        return final;
+      int ans=0;
+      int maxlen=0;
+      find(root,0,0,ans,maxlen);
+      return ans;
     }
 };
 
