@@ -100,35 +100,31 @@ struct Node
 class Solution{
   public:
   int ans;
-  void end(Node*root,int k,int target)
-  {
-      if(root==NULL)
-      {
-          return;
-      }
-      target+=root->data;
-      if(target==k)
-      {
-          ans++;
-      }
-      end(root->left,k,target);
-      end(root->right,k,target);
-      
-  }
-  
-  void start(Node *root,int k)
-  {
-      int target=0;
-      if(root==NULL) return;
-      end(root,k,target);
-      start(root->left,k);
-      start(root->right,k);
-  }
+    void start(Node *root,int k,vector<int> &path)
+    {
+        if(root==NULL) return;
+        path.push_back(root->data);
+        start(root->left,k,path);
+        start(root->right,k,path);
+        int n=path.size();
+        int sum=0;
+        for(int i=n-1;i>=0;i--)
+        {
+            sum+=path[i];
+            if(sum==k)
+            {
+                ans++;
+            }
+        }
+        path.pop_back();
+    }
     int sumK(Node *root,int k)
     {
         // code here 
+        
         ans=0;
-        start(root,k);
+        vector<int> path;
+        start(root,k,path);
         return ans;
     }
 };
