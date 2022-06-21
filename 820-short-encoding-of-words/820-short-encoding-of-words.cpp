@@ -1,29 +1,23 @@
 class Solution {
 public:
-    static bool compare (string& first, string& second) {
-        return first.size() > second.size();
-    }
     int minimumLengthEncoding(vector<string>& words) {
-        unordered_map<string, int> mp;
-        int ans = 0;
+         for(auto &word: words)
+            reverse(word.begin(), word.end());
         
-       sort(words.begin(), words.end(), compare);
-
-       for(int i=0; i<words.size(); i++){
-            mp[words[i]]++;
-        }
+        sort(words.begin(), words.end());
+            int n = words.size();
+        string str = words[0]; 
+        int ans=0, wordsize;
         
-        for(int i=0; i<words.size(); i++){
-            int k = words[i].size();
-            if(mp[words[i]] >0){
-                ans += (k+1);
-            }
-            
-            for(int j=k-1; j>=0; j--){
-                string s = words[i].substr(j, k-j);
-                mp[s] = 0;
-            }
+        for(int i=1;i<n;i++) 
+        {
+                cout<<str<<" "<<words[i]<<endl;
+            wordsize = str.size();
+            if(words[i].compare(0, wordsize, str)) 
+                ans += 1+wordsize;
+            str = words[i];
         }
+        ans += str.size()+1;
         return ans;
     }
 };
