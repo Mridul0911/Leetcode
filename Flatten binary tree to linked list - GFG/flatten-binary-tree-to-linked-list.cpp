@@ -122,11 +122,15 @@ class Solution
         root->left=NULL;
         return root;
     }
+    Node *prev=NULL;
     void flatten(Node *root)
     {
-        //code here
-        if(root==NULL) return;
-        root=preorder(root);
+           if(root==NULL) return;
+            flatten(root->right);
+            flatten(root->left);
+            root->right=prev;
+            root->left=NULL;
+            prev=root;       
     }
 };
 
