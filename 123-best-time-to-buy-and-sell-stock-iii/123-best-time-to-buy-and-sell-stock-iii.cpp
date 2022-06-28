@@ -17,6 +17,35 @@ public:
                 return dp[index][buy][cap]=max((prices[index]+find(index+1,1,n,prices,cap+1,dp)),find(index+1,0,n,prices,cap,dp));
                 
         }
+        
+                /*
+                TABULATION:-
+                int maxProfit(vector<int>& prices) 
+    {
+            int n=prices.size();
+            int cap=0;
+            vector<vector<vector<int>>> dp(n+1,vector<vector<int>>(2,vector<int>(3,0)));
+            for(int index=n-1;index>=0;index--)
+            {
+                    for(int buy=0;buy<=1;buy++)
+                    {
+                            for(int cap=1;cap>=0;cap--)
+                            {
+                                        if(buy)
+                                        {
+                                                dp[index][buy][cap]=max((-prices[index]+dp[index+1][0][cap]),dp[index+1][1][cap]);
+                                        }
+                                        else
+                                        {
+                                                dp[index][buy][cap]=max((prices[index]+dp[index+1][1][cap+1]),dp[index+1][0][cap]); 
+                                        }
+                            }
+                    }
+            }
+            return dp[0][1][0];
+         }
+};
+                */
     int maxProfit(vector<int>& prices) 
     {
             int n=prices.size();
