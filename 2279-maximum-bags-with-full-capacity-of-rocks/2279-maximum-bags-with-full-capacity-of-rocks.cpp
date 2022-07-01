@@ -12,7 +12,9 @@ public:
 //                 5 4
             
             
-            
+           ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
+   
             
             vector<pair<int,int>> inp;
             for(int i=0;i<capacity.size();i++)
