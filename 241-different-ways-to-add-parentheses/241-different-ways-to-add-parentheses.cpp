@@ -1,5 +1,6 @@
 class Solution {
 public:
+        map<string,vector<int>> mp;
         bool isOperator(char gg)
         {
                 if(gg=='*' || gg=='-' || gg=='+')
@@ -30,7 +31,12 @@ public:
                 if(operators=='-') return it-it1;
                 return 0;
         }
+        
     vector<int> diffWaysToCompute(string expression) {
+            if(mp.find(expression)!=mp.end())
+            {
+                    return mp[expression];
+            }
         vector<int> ans;
             int isNumber=0;
             for(int i=0;i<expression.size();i++ )
@@ -54,6 +60,6 @@ public:
             {
                     ans.push_back(stoi(expression));
             }
-            return ans;
+            return mp[expression]=ans;
     }
 };
