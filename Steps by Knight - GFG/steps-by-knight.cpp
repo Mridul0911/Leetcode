@@ -21,34 +21,30 @@ class Solution
 	    TargetPos[0]--;
 	    TargetPos[1]--;
 	    vector<vector<bool>> vis(N,vector<bool>(N,false));
-	    queue<pair<int,pair<int,int>>> q;
-	    q.push({0,{KnightPos[0],KnightPos[1]}});
-	    int steps=0;
-	    
-	    vis[KnightPos[0]][KnightPos[1]]=true;
-	    while(!q.empty())
+	    queue<pair<int,pair<int,int>>> pq;
+	    pq.push({0,{KnightPos[0],KnightPos[1]}});
+	    while(!pq.empty())
 	    {
-	        int x=q.front().second.first;
-	        int y=q.front().second.second;
-	        int steps=q.front().first;
-	        q.pop();
-			if(x == TargetPos[0] and y == TargetPos[1])
-				return steps;
-	        
+	        int x=pq.front().second.first;
+	        int y=pq.front().second.second;
+	        int steps=pq.front().first;
+	        pq.pop();
+	        if(x==TargetPos[0] && y==TargetPos[1])
+	        {
+	            return steps;
+	        }
 	        for(int i=0;i<8;i++)
 	        {
-	            int nx=x+dx[i];
-	            int ny=y+dy[i];
-	            if(isValid(nx, ny, N) and !vis[nx][ny])
+	            int xx=dx[i]+x;
+	            int yy=dy[i]+y;
+	            if(isValid(xx,yy,N) && !vis[xx][yy])
 	            {
-					q.push({steps+1,{nx, ny}});
-					vis[nx][ny] = true;
-				}
+	                vis[xx][yy]=true;
+	                pq.push({steps+1,{xx,yy}});
+	            }
 	        }
-	   }
-	   
-	  return -1;  
-	    
+	    }
+	    return -1;
 	}
 };
 
