@@ -33,6 +33,9 @@ public:
         }
         
     vector<int> diffWaysToCompute(string expression) {
+            ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
+  
             if(mp.find(expression)!=mp.end())
             {
                     return mp[expression];
