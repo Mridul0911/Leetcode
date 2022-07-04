@@ -11,7 +11,6 @@ if(sr==n || sr<0 || sc==m || sc<0 || image[sr][sc]!=curr || image[sr][sc]==newCo
         find(sr,sc-1,newColor,n,m,image,curr);
         find(sr-1,sc,newColor,n,m,image,curr);
         find(sr,sc+1,newColor,n,m,image,curr);
-        
         }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
         int n=image.size();
