@@ -12,46 +12,37 @@ class Solution
     public:
       vector <int> maximumDistance(vector<vector<int>> edges,int v,int e,int src)
       {
-            // code here
-            vector<vector<int>> adj[v];
-            vector<int> indegree(v,0);
-            vector<int> dist(v,INT_MIN);
-            
-            for(int i=0;i<e;i++)
+            vector<pair<int,int>> adj[v];
+            for(int i=0;i<edges.size();i++)
             {
-                 adj[edges[i][0]].push_back({edges[i][1],edges[i][2]});
-                 indegree[edges[i][1]]++;
+                adj[edges[i][0]].push_back({edges[i][1],edges[i][2]});
             }
-            queue<int> q;
-           
-            for(int i=0;i<v;i++)
+            vector< int>dist(v,INT_MIN);
+            priority_queue<pair<int,int>> pq;
+            pq.push({src,0});
+            dist[src]=0;
+            while(!pq.empty())
             {
-                if(indegree[i]==0)
-                {
-                    q.push(i);
-                }
-            }
-            dist[src] = 0;
-            vector<int> ans;
-            while(!q.empty())
-            {
-                int x=q.front();
-                q.pop();
-                ans.push_back(x);
+                pair<int,int>p=pq.top();
+                pq.pop();
+                int x=p.first;
+                int y=p.second;
                 for(auto it:adj[x])
                 {
-                    if(dist[x]!=INT_MIN)
+                    if(it.second+y>dist[it.first])
                     {
-                        dist[it[0]]=max(dist[it[0]],dist[x]+it[1]);
-                    }
-                    indegree[it[0]]--;
-                    if(indegree[it[0]]==0)
-                    {
-                        q.push(it[0]);
+                        dist[it.first]=it.second+y;
+                        pq.push({it.first,it.second+y});
                     }
                 }
             }
-            return dist;
+            vector< int>ans;
+            for(int i=0;i<v;i++)
+            {
+                if(dist[i]==INT_MIN)ans.push_back(INT_MIN);
+                else ans.push_back(dist[i]);
+            }
+            return ans;
       }
 };
 
