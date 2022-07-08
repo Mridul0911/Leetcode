@@ -14,13 +14,6 @@ public:
                     {
                             j++;
                     }
-                    else if(sum==target)
-                    {
-                            ans=min(ans,j-i+1);
-                            j++;
-                            sum-=nums[i];
-                            i++;
-                    }
                     else
                     {
                             ans=min(ans,j-i+1);
@@ -42,7 +35,5 @@ public:
             {
                     return ans;
             }
-        
-        
-    }
+     }
 };
