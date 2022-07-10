@@ -10,10 +10,8 @@ using namespace std;
 class Solution{   
 public:
     int getPairsCount(int arr[], int n, int k) {
-        
-    unordered_map<int,int> m;
+      unordered_map<int,int> m;
        int count = 0;
-       
        for(int i=0;i<n;i++)
        {
            int val = k - arr[i];
@@ -23,9 +21,6 @@ public:
            m[arr[i]]++;
        }
        return count;
-
-     
-        
     }
 };
 
