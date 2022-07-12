@@ -17,16 +17,41 @@ class Solution{
     {
         
         // your code here
-         sort(a,a+n);
-        int count=0;
+        int maj_index=0;
+        int count=1;
+        for(int i=1;i<n;i++)
+        {
+            if(a[maj_index]==a[i])
+            {
+                count++;
+            }
+            else
+            {
+                count--;
+            }
+            if(count==0)
+            {
+                maj_index=i;
+                count=1;
+            }
+        }
+        int ele=a[maj_index];
+        count=0;
         for(int i=0;i<n;i++)
-          if(a[n/2]==a[i])
-            count++;
-            
-          if(count>n/2)
-        return a[n/2];
-        
-         return -1;
+        {
+            if(a[i]==ele)
+            {
+                count++;
+            }
+        }
+        if(count>n/2)
+        {
+            return a[maj_index];
+        }
+        else
+        {
+            return -1;
+        }
         
     }
 };
