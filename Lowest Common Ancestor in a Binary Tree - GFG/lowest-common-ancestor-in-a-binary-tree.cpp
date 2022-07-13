@@ -47,6 +47,7 @@ class Solution
        }
        if(root->data==n1 || root->data==n2)
        {
+        //   cout<<root->data<<endl;
            return root;
        }
        Node *left=lca(root->left,n1,n2);
@@ -61,9 +62,9 @@ class Solution
        }
        if(left!=NULL)
        {
-           return lca(root->left,n1,n2);
+           return left;
        }
-       return lca(root->right,n1,n2);
+       return right;
     }
 };
 
