@@ -10,7 +10,7 @@ class Solution{
   public:
     void solve(int a[],int n,int k,int currsum,int count,vector<int>&visited,int sum,bool&ans)
     {
-        if(count==k)
+           if(count==k)
             {
                 ans=true;
                 return;
@@ -19,7 +19,7 @@ class Solution{
             return;
         if(currsum==sum)
             { 
-              return solve(a,n,k,0,count+1,visited,sum,ans);
+              solve(a,n,k,0,count+1,visited,sum,ans);
               if(ans==true)
                     return;
             }
