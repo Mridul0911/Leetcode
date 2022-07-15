@@ -10,7 +10,7 @@ class Solution{
   public:
     void solve(int a[],int n,int k,int currsum,int count,vector<int>&visited,int sum,bool&ans)
     {
-        if(count==k-1)
+        if(count==k)
             {
                 ans=true;
                 return;
@@ -23,7 +23,6 @@ class Solution{
               if(ans==true)
                     return;
             }
-            
         for(int i=0;i<n;++i)
         {
             if(visited[i]==false)
@@ -36,7 +35,6 @@ class Solution{
             }
         }
     }
-    
     bool isKPartitionPossible(int a[], int n, int k)
     {
         if(k>n)
