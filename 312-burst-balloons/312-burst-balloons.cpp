@@ -24,7 +24,21 @@ public:
                 nums.insert(nums.begin(),1);
                 nums.push_back(1);
                 cout<<nums[1]<<" "<<nums[n]<<endl;
-                vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
-                return solve(nums,1,n,dp);
+                vector<vector<int>> dp(n+2,vector<int>(n+2,0));
+                for(int i=n;i>=1;i--)
+                {
+                        for(int j=1;j<=n;j++)
+                        {
+                                if(i>j) continue;
+                                int maxi=INT_MIN;
+                                for(int k=i;k<=j;k++)
+                                {
+                                        int cost=nums[i-1]*nums[j+1]*nums[k]+dp[k+1][j]+dp[i][k-1];
+                                        maxi=max(maxi,cost);
+                                }
+                                dp[i][j]=maxi;
+                        }
+                }
+                return dp[1][n];
         }
 };        
