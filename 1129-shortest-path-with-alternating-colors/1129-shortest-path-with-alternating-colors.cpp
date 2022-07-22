@@ -35,7 +35,7 @@ public:
                             qp.pop();
                             for(auto gg:adj[it.first])
                             {
-                                    cout<<gg.first<<" "<<gg.second<<endl;
+                                  //  cout<<gg.first<<" "<<gg.second<<endl;
                                 if(vis[it.first][gg.first][gg.second]==false && gg.second!=it.second)    
                                 {
                                         dist[gg.first]=min(count,dist[gg.first]);
