@@ -2,6 +2,9 @@ class Solution {
 public:
     vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& red_edges, vector<vector<int>>& blue_edges) 
     {
+              ios_base::sync_with_stdio(0);
+      cin.tie(0); cout.tie(0);
+    
          vector<vector<pair<int,int>>> adj(n);
             for(auto it:red_edges)
             {
