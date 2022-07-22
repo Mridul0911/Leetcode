@@ -1,59 +1,78 @@
 class Solution {
 public:
-    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& red_edges, vector<vector<int>>& blue_edges) 
-    {
-              ios_base::sync_with_stdio(0);
-      cin.tie(0); cout.tie(0);
-    
-         vector<vector<pair<int,int>>> adj(n);
-            for(auto it:red_edges)
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& redEdges, vector<vector<int>>& blueEdges) {
+        vector<pair<int,int>>adj[n+1];
+         vector<int>distr(n+1,1e9);
+         vector<int>distb(n+1,1e9);
+            for(int i=0;i<redEdges.size();i++)
             {
-                    adj[it[0]].push_back({it[1],0});
+                    adj[redEdges[i][0]].push_back({redEdges[i][1],0});
             }
-            for(auto it:blue_edges)
+            for(int i=0;i<blueEdges.size();i++)
             {
-                    adj[it[0]].push_back({it[1],1});
+                    adj[blueEdges[i][0]].push_back({blueEdges[i][1],1});
             }
-            queue<pair<int,int>> qp;
-            qp.push({0,-1});
-            vector<int> dist(n,1e9);
-            dist[0]=0;
-            int count=1;
-            vector<vector<vector<bool>>> vis(n,vector<vector<bool>>(n,vector<bool>(2,false)));
-             ios_base::sync_with_stdio(0);
-      cin.tie(0); cout.tie(0);
-            
-            while(!qp.empty())
+            distr[0]=0;
+            distb[0]=0;
+            queue<pair<int,int>>q;
+            q.push({0,-1});
+            while(!q.empty())
             {
-                             ios_base::sync_with_stdio(0);
-      cin.tie(0); cout.tie(0);
-    
-                    int size=qp.size();
-                    for(int i=0;i<size;i++)
+                    int u=q.front().first;
+                    int v=q.front().second;
+                    q.pop();
+                    for(auto it:adj[u])
                     {
-                            auto it=qp.front();
-                            qp.pop();
-                            for(auto gg:adj[it.first])
+                            if(v==-1)
                             {
-                                  //  cout<<gg.first<<" "<<gg.second<<endl;
-                                if(vis[it.first][gg.first][gg.second]==false && gg.second!=it.second)    
-                                {
-                                        dist[gg.first]=min(count,dist[gg.first]);
-                                        vis[it.first][gg.first][gg.second]=true;
-                                        qp.push({gg.first,gg.second});
-                                }
+                                    if(it.second==0)
+                                    {
+                                            if(distr[it.first]>1+distb[u])
+                                            {
+                                            distr[it.first]=1;
+                                            q.push({it.first,0});
+                                            }
+                                    }
+                                    else
+                                    {
+                                            if(distb[it.first]>1+distr[u])
+                                            {
+                                            distb[it.first]=1;
+                                            q.push({it.first,1});
+                                            }
+                                    }
+                            }
+                            else if(v==0)
+                            {
+                                  if(it.second==1)
+                                  {
+                                          if(distb[it.first]>1+distr[u])
+                                          {
+                                                  distb[it.first]=1+distr[u];
+                                                  q.push({it.first,1});
+                                          }
+                                  }
+                            }
+                            else
+                            {
+                                   if(it.second==0) 
+                                   {
+                                           if(distr[it.first]>1+distb[u])
+                                           {
+                                                   distr[it.first]=1+distb[u];
+                                                   q.push({it.first,0});
+                                           }
+                                   }
                             }
                     }
-                    count++;
             }
+            vector<int>ans;
             for(int i=0;i<n;i++)
             {
-                    if(dist[i]==1e9)
-                    {
-                            dist[i]=-1;
-                    }
+                    int x=min(distr[i],distb[i]);
+                    if(x==1e9)ans.push_back(-1);
+                    else ans.push_back(x);
             }
-            return dist;
-            
+            return ans;
     }
 };
