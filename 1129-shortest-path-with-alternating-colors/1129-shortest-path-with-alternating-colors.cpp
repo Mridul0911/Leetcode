@@ -1,78 +1,51 @@
 class Solution {
 public:
     vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& redEdges, vector<vector<int>>& blueEdges) {
-        vector<pair<int,int>>adj[n+1];
-         vector<int>distr(n+1,1e9);
-         vector<int>distb(n+1,1e9);
-            for(int i=0;i<redEdges.size();i++)
+        vector<pair<int,int>>adj[n];
+        for(int i=0;i<redEdges.size();i++)
+        {
+            adj[redEdges[i][0]].push_back({redEdges[i][1],0});    
+        }
+        for(int i=0;i<blueEdges.size();i++)
+        {
+            adj[blueEdges[i][0]].push_back({blueEdges[i][1],1});
+        }
+        vector<vector<int>>dist(n,vector<int>(2,-1));;
+        queue<pair<int,int>>q;
+        q.push({0,1});
+        q.push({0,0});
+        dist[0][0]=0;
+        dist[0][1]=0;
+        while(!q.empty())
+        {
+            int v = q.front().first;
+            int col = q.front().second;
+            q.pop();
+            for(auto it:adj[v])
             {
-                    adj[redEdges[i][0]].push_back({redEdges[i][1],0});
+                if(it.second==col||dist[it.first][it.second]!=-1)
+                    continue;
+                dist[it.first][it.second] = 1+ dist[v][col];
+                q.push({it.first,it.second});
+                
             }
-            for(int i=0;i<blueEdges.size();i++)
+        }
+        vector<int>ans(n,-1);
+        for(int i=0;i<n;i++)
+        {
+            if(dist[i][0]==-1&&dist[i][1]==-1)
+                continue;
+            else if(dist[i][0]==-1||dist[i][1]==-1)
             {
-                    adj[blueEdges[i][0]].push_back({blueEdges[i][1],1});
+                if(dist[i][0]!=-1)
+                ans[i]=dist[i][0];
+            
+            if(dist[i][1]!=-1)
+                ans[i]=dist[i][1];    
             }
-            distr[0]=0;
-            distb[0]=0;
-            queue<pair<int,int>>q;
-            q.push({0,-1});
-            while(!q.empty())
-            {
-                    int u=q.front().first;
-                    int v=q.front().second;
-                    q.pop();
-                    for(auto it:adj[u])
-                    {
-                            if(v==-1)
-                            {
-                                    if(it.second==0)
-                                    {
-                                            if(distr[it.first]>1+distb[u])
-                                            {
-                                            distr[it.first]=1;
-                                            q.push({it.first,0});
-                                            }
-                                    }
-                                    else
-                                    {
-                                            if(distb[it.first]>1+distr[u])
-                                            {
-                                            distb[it.first]=1;
-                                            q.push({it.first,1});
-                                            }
-                                    }
-                            }
-                            else if(v==0)
-                            {
-                                  if(it.second==1)
-                                  {
-                                          if(distb[it.first]>1+distr[u])
-                                          {
-                                                  distb[it.first]=1+distr[u];
-                                                  q.push({it.first,1});
-                                          }
-                                  }
-                            }
-                            else
-                            {
-                                   if(it.second==0) 
-                                   {
-                                           if(distr[it.first]>1+distb[u])
-                                           {
-                                                   distr[it.first]=1+distb[u];
-                                                   q.push({it.first,0});
-                                           }
-                                   }
-                            }
-                    }
-            }
-            vector<int>ans;
-            for(int i=0;i<n;i++)
-            {
-                    int x=min(distr[i],distb[i]);
-                    if(x==1e9)ans.push_back(-1);
-                    else ans.push_back(x);
-            }
-            return ans;
+            else
+                ans[i]=min(dist[i][1],dist[i][0]);
+        }
+        return ans;
     }
 };
