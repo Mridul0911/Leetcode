@@ -20,9 +20,14 @@ public:
             dist[0]=0;
             int count=1;
             vector<vector<vector<bool>>> vis(n,vector<vector<bool>>(n,vector<bool>(2,false)));
+             ios_base::sync_with_stdio(0);
+      cin.tie(0); cout.tie(0);
             
             while(!qp.empty())
             {
+                             ios_base::sync_with_stdio(0);
+      cin.tie(0); cout.tie(0);
+    
                     int size=qp.size();
                     for(int i=0;i<size;i++)
                     {
