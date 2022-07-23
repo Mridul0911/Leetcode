@@ -1,4 +1,3 @@
-//libraries required to add ordered set
 #include<ext/pb_ds/assoc_container.hpp>
 #include<ext/pb_ds/tree_policy.hpp>
 
@@ -10,15 +9,15 @@ class Solution {
 public:
     vector<int> countSmaller(vector<int>& nums) {
         pbds s;
-        int n = nums.size();
-        vector<int> ans(n);
-        
-        for(int i=n-1; i>=0; --i)
-        {
-            ans[i] = s.order_of_key(nums[i]);           // logn look-up time
-			s.insert(nums[i]);                //logn insertion time
-        }
-        
-        return ans;
+         vector<int>v;
+         int n=nums.size();
+          for(int i=n-1;i>=0;i--)
+          {
+                  int x=s.order_of_key(nums[i]);
+                  v.push_back(x);
+                  s.insert(nums[i]);
+          }
+            reverse(v.begin(),v.end());
+            return v;
     }
 };
