@@ -20,9 +20,7 @@ public:
           counter++;
           temp=temp->next;
       }
-      //ListNode *node=temp->next;
       temp->next=temp->next->next;
-      //delete node;
       return head;
     }
 };
