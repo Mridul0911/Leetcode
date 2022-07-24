@@ -10,9 +10,6 @@ public:
       }
       if(countNodes==n)
       {
-          //ListNode *node=head;
-          //head=head->next;
-          //delete node;
           return head->next;
       }
       int difference = countNodes - n;
@@ -23,9 +20,9 @@ public:
           counter++;
           temp=temp->next;
       }
-      ListNode *node=temp->next;
-      temp->next=node->next;
-      delete node;
+      //ListNode *node=temp->next;
+      temp->next=temp->next->next;
+      //delete node;
       return head;
     }
 };
