@@ -2,7 +2,7 @@ class Solution {
 public:
     
     long long interchangeableRectangles(vector<vector<int>>& rectangles) {
-        map<double,long long> mp;
+        unordered_map<double,long long> mp;
         long long finalans=0;
         for(auto it:rectangles)
         {
