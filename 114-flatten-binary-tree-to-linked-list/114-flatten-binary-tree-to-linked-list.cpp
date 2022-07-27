@@ -35,11 +35,9 @@ public:
         
     }
 };*/
-
-
 class Solution {
 public:
-        TreeNode *prev=NULL;
+     TreeNode *prev=NULL;
     void flatten(TreeNode* root) 
     {
             if(root==NULL) return;
