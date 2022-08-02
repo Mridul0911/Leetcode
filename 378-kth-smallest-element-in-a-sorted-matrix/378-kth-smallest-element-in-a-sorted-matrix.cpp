@@ -6,7 +6,6 @@ public:
         int n=matrix.size();
         for(int i=0; i<n; ++i)
         {
-  //              cout<<matrix[0][i]<<" ";
             pq.push({matrix[0][i],{0,i}});
         }
          int ans;
