@@ -1,24 +1,33 @@
 class Solution {
 public:
-    int mirrorReflection(int p, int q) 
-    {
-        if(p==q)
-        {
+    int mirrorReflection(int p, int q) {
+            if(p==q)
+            {
                     return 1;
-        }
-        while(((p%2)==0) && (q%2)==0)
-        {
-                p=p/2;
-                q=q/2;
-        }
-        if((p%2)==0 && (q%2)!=0)
-        {
-            return 2;
-        } 
-        if((p%2)!=0 && (q%2)!=0)
-        {
+            }
+            while(p%2==0 && q%2==0)
+            {
+                    p=p/2;
+                    q=q/2;
+            }
+          if(p%2==0)
+          {
+                  if(q%2!=0)
+                  {
+                  return 2;
+                  }
+          }
+           else if(p%2!=0)
+           {
+                   if(q%2==0)
+                   {
+                           return 0;
+                   }
+                   else
+                   {
+                           return 1;
+                   }
+           }
             return 1;
-        } 
-        return 0;
     }
 };
