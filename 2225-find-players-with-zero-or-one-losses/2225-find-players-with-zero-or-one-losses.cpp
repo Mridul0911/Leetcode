@@ -1,6 +1,9 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+            ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    
         map<int,pair<int,int>> mp; //wins ,losses
             for(auto it:matches)
             {
