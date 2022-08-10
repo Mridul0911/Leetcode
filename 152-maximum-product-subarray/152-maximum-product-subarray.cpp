@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-      
+    
             int n=nums.size();
             int maxi=nums[0];
             int mini=nums[0];
@@ -16,6 +16,7 @@ public:
                     }
                    maxi=max(nums[i],nums[i]*maxi);
                    mini=min(nums[i],nums[i]*mini);
+                    cout<<maxi<<" "<<mini<<endl;
                     ans=max(ans,maxi);
             }
             return ans;
