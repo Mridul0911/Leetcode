@@ -18,12 +18,10 @@ public:
                 }
                         subsequence(index+1,target,candidates,ans,inp);
         }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target){
         vector<vector<int>> ans;
             vector<int> inp;
             subsequence(0,target,candidates,ans,inp);
             return ans;
-            
-            
     }
 };
