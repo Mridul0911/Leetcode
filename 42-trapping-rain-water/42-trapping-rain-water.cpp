@@ -16,7 +16,7 @@ public:
                     right[i]=max(height[i],right[i+1]);
             }
             int waterTrapped = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++){
         waterTrapped += min(left[i],right[i])-height[i];
         }
   return waterTrapped;
