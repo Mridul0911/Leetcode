@@ -1,3 +1,4 @@
+// dp[n] = min(sum of maximum height from each partition such that sum of width in each partition <= ws
 class Solution {
 public:
         int find(vector<vector<int>> &books,int shelfWidth,int n,vector<int> &dp)
