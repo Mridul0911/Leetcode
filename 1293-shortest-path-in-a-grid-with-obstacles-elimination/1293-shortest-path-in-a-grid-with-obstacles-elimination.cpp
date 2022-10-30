@@ -18,12 +18,10 @@ public:
                 int x=p.first.first;
                 int y=p.first.second;
                 int z=p.second;
-                 
                if(x==n-1&&y==m-1)
                {
                    return ans;
                }
-                   
                 for(int i=0;i<4;i++ )
                 {
                     int u=x+dir[i][0];
@@ -41,13 +39,10 @@ public:
                             vis[u][v][z]=1;
                         }
                     }
-                     
                 }
-                 
             }
             ans++;
         }
-        
         return -1;
     }
 };
