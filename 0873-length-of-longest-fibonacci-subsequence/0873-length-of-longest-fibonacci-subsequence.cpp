@@ -1,9 +1,15 @@
 class Solution {
 public:
-        int find(int i,int j,vector<int> &arr,map<int,int> &mp)
+        
+        int find(int i,int j,vector<int> &arr,map<int,int> &mp,vector<vector<int>> &dp)
         {
+                
               if(mp.find(arr[i]+arr[j])==mp.end()) return 0;
-              return 1+find(j,mp[arr[i]+arr[j]],arr,mp); 
+                if(dp[i][j]!=-1)
+                {
+                        return dp[i][j];
+                }
+              return dp[i][j]=1+find(j,mp[arr[i]+arr[j]],arr,mp,dp); 
         }
     int lenLongestFibSubseq(vector<int>& arr) {
         map<int,int> mp;
@@ -11,6 +17,7 @@ public:
             {
                 mp[arr[i]]=i;    
             }
+            vector<vector<int>> dp(1001,vector<int>(1001,-1));
             int maxi=0;
             for(int i=0;i<arr.size()-2;i++)
             {
@@ -22,7 +29,7 @@ public:
                             }
                             else
                             {
-                                    maxi=max(maxi,find(i,j,arr,mp));
+                                    maxi=max(maxi,find(i,j,arr,mp,dp));
                             }
                     }
             }
