@@ -12,6 +12,8 @@ public:
      }
   }
   string smallestEquivalentString(string s1, string s2, string baseStr) {
+          ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
         vector<int> parent(26,0);
             int n=s1.size();
             for(int i=0;i<26;i++)
