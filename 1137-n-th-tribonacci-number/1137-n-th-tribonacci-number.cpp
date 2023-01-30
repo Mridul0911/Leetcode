@@ -1,27 +1,11 @@
 class Solution {
 public:
-        int find(int n,vector<int> &dp){
-                
-        if(n == 0)
-        { 
-                return 0; 
+        int dp[38]={0,1,1};
+    int tribonacci(int n) {
+        if(n==0 || dp[n])
+        {
+                return dp[n];
         }
-    if(n == 1)
-    { 
-            return 1;
-            }
-    if(n == 2) 
-    { 
-            return 1;
-    }
-                if(dp[n]!=-1)
-                {
-                        return dp[n];
-                }
-         return dp[n]=find(n-1,dp)+find(n-2,dp)+find(n-3,dp);
-        }
-    int tribonacci(int N) {
-        vector<int> dp(N+1,-1);
-          return find(N,dp);
+            return dp[n]=tribonacci(n-1)+tribonacci(n-2)+tribonacci(n-3);
     }
 };
