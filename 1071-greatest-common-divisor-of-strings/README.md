@@ -3,19 +3,19 @@
 <p>Given two strings <code>str1</code> and <code>str2</code>, return <em>the largest string </em><code>x</code><em> such that </em><code>x</code><em> divides both </em><code>str1</code><em> and </em><code>str2</code>.</p>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre><strong>Input:</strong> str1 = "ABCABC", str2 = "ABC"
 <strong>Output:</strong> "ABC"
 </pre>
 
-<p><strong>Example 2:</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <pre><strong>Input:</strong> str1 = "ABABAB", str2 = "ABAB"
 <strong>Output:</strong> "AB"
 </pre>
 
-<p><strong>Example 3:</strong></p>
+<p><strong class="example">Example 3:</strong></p>
 
 <pre><strong>Input:</strong> str1 = "LEET", str2 = "CODE"
 <strong>Output:</strong> ""
