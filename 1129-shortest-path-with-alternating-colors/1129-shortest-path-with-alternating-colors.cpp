@@ -27,7 +27,6 @@ public:
                     continue;
                 dist[it.first][it.second] = 1+ dist[v][col];
                 q.push({it.first,it.second});
-                
             }
         }
         vector<int>ans(n,-1);
@@ -39,7 +38,6 @@ public:
             {
                 if(dist[i][0]!=-1)
                 ans[i]=dist[i][0];
-            
             if(dist[i][1]!=-1)
                 ans[i]=dist[i][1];    
             }
