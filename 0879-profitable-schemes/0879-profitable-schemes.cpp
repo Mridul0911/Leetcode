@@ -1,29 +1,16 @@
 class Solution {
 public:
-    int mod=(int)1e9+7;
-    int getMinPeople(int N,int minProfit,int n,vector<int> &profit,vector<int> &group,vector<vector<vector<int>>> &dp){
-        if(n==0){
-            if(minProfit==0) return 1;
-             return 0;
+int profitableSchemes(int G, int P, vector<int> group, vector<int> profit) {
+        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
+        dp[0][0] = 1;
+        int res = 0, mod = 1e9 + 7;
+        for (int k = 0; k < group.size(); k++) {
+            int g = group[k], p = profit[k];
+            for (int i = P; i >= 0; i--)
+                for (int j = G - g; j >= 0; j--)
+                    dp[min(i + p, P)][j + g] = (dp[min(i + p, P)][j + g] + dp[i][j]) % mod;
         }
-        if(N==0){
-            if(minProfit) return 0;
-            return 1;
-        }
-        if(dp[N][minProfit][n]!=-1) 
-        {
-                return dp[N][minProfit][n];
-        }
-        int cnt=getMinPeople(N-1,minProfit,n,profit,group,dp);
-        if(group[N-1]<=n){
-            int x=getMinPeople(N-1,max(0,minProfit-profit[N-1]),n-group[N-1],profit,group,dp);
-            cnt=(cnt%mod+x%mod)%mod;
-        }
-        return dp[N][minProfit][n]=cnt;
- }
-   int profitableSchemes(int n, int minProfit, vector<int>& group, vector<int>& profit) {
-        int N=group.size();
-        vector<vector<vector<int>>> dp(N+1,vector<vector<int>>(minProfit+1,vector<int>(n+1,-1)));
-        return (getMinPeople(N,minProfit,n,profit,group,dp)==INT_MAX)?-1:dp[N][minProfit][n];
+        for (int x: dp[P]) res = (res + x) % mod;
+        return res;
     }
 };
