@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 #define MAX_HEIGHT 100000
@@ -103,7 +103,8 @@ int main() {
       // cout<<"~"<<endl;
    }
    return 0;
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 /*
@@ -121,48 +122,28 @@ struct Node {
 */
 // your task is to complete the Function
 // Function should return median of the BST
-
-void inorder(Node *root,int &count)
+void inorder(Node *root,vector<int> &ans)
 {
     if(root==NULL)
     {
         return;
     }
-    inorder(root->left,count);
-    count++;
-    inorder(root->right,count);
-}
-void inorderagain(Node *root,int &k,int &cnt,int &x,int &z,int &h)
-{
-    if(root==NULL || x==1)
-    {
-        return;
-    }
-    inorderagain(root->left,k,cnt,x,z,h);
-    cnt++;
-    if(x==1) return;
-    if(cnt==k){
-        z=root->data;
-        x=1;
-        return;
-    }
-    else if(cnt==k-1)h=root->data;
-    inorderagain(root->right,k,cnt,x,z,h);
+    inorder(root->left,ans);
+    ans.push_back(root->data);
+    inorder(root->right,ans);
 }
 float findMedian(struct Node *root)
 {
-      //Code here
-      int count=0;
-      inorder(root,count);
-      int k=(count/2)+1;
-      int l,cnt=0;
-      int x=0,z=0,h;
-      inorderagain(root,k,cnt,x,z,h);
-      float a=z,b=h;
-      if(count%2){
-          return a;
+      vector<int> ans;
+      inorder(root,ans);
+      if(ans.size()%2!=0)
+      {
+          return ans[ans.size()/2];
       }
-      return (a+b)/2;
-      
+      else
+      {
+         float gg=((ans[ans.size()/2]+ans[(ans.size()/2)-1])/(2.0));
+         return gg;
+      }
 }
 
