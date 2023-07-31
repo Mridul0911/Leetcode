@@ -1,27 +1,28 @@
 class Solution {
 public:
-    int longestOnes(vector<int>& answerKey, int k) {
+    int longestOnes(vector<int>& arr,int k) {
         int count=0;
+        int i=0;
+        int j=0;
+        int n=arr.size();
         int ans=INT_MIN;
-        int left=0;
-        for(int i=0;i<answerKey.size();i++)
+        while(j<n)
         {
-            if(answerKey[i]==0)
+            if(arr[j]==0)   
             {
                 count++;
             }
-            //cout<<count<<endl;
-            while(count>k){
-              //  cout<<"HELLO"<<endl;
-                if(answerKey[left]==0)
+            while(count>k)
+            {
+                if(arr[i]==0)
                 {
                     count--;
                 }
-                left++;
+                i++;
             }
-            ans=max(ans,i-left+1);
+            ans=max(ans,j-i+1);
+            j++;
         }
         return ans;
     }
-    
 };
