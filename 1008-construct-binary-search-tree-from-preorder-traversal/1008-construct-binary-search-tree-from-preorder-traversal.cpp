@@ -11,34 +11,33 @@
  */
 class Solution {
 public:
-       TreeNode *insertinBST(TreeNode *root,int x)
-       {
-               TreeNode *rootx=NULL;
-               if(root==NULL)
-               {
-                       rootx=new TreeNode(x);
-                       return rootx;
-               }
-               else
-               {
-                       if(root->val>x)
-                       {
-                             root->left=insertinBST(root->left,x);  
-                       }
-                       else
-                       {
-                               root->right=insertinBST(root->right,x);  
-                       }
-               }
-               return root;
-         }
-        
-        TreeNode* bstFromPreorder(vector<int>& preorder) {
-        TreeNode *root=NULL;
-            for(int i=0;i<preorder.size();i++)
-            {
-                   root=insertinBST(root,preorder[i]);
-            }
-           return root;
+    TreeNode *insert(TreeNode *root,int x)
+    {
+        TreeNode *rootx=NULL;
+        if(root==NULL)
+        {
+            rootx=new TreeNode(x);
+            return rootx;
         }
+        else
+        {
+            if(root->val>x)
+            {
+                root->left=insert(root->left,x);
+            }
+            if(root->val<x)
+            {
+                root->right=insert(root->right,x);
+            }
+        }
+        return root;
+    }
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        TreeNode *root=NULL;
+        for(int i=0;i<preorder.size();i++)
+        {
+            root=insert(root,preorder[i]);
+        }
+        return root;
+    }
 };
