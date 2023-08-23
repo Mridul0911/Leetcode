@@ -1,38 +1,36 @@
 class Solution {
 public:
-   vector<int>vis,col;
-    bool dfs(int i,int c,vector<vector<int>> &graph)
+    bool dfs(int node,int co,vector<int> &color,vector<vector<int>> &graph)
     {
-            vis[i]=true;
-            col[i]=c;
-            for(auto gg:graph[i])
+        color[node]=co;
+        for(auto it:graph[node])
+        {
+            if(color[it]==-1)
             {
-                    if(vis[gg]==false && dfs(gg,c^1,graph)==false)
-                    {
-                            return false;
-                    }
-                    else
-                    {
-                            if(col[i]==col[gg])
-                            {
-                                    return false;
-                            }
-                    }
+                if(dfs(it,!co,color,graph)==false)
+                {
+                    return false;
+                }
             }
-            return true;
-    }
-        
-    bool isBipartite(vector<vector<int>>& graph) {
-        int n=graph.size();
-        vis.resize(n);
-        col.resize(n);
-
-        for(int i=0;i<n;++i){
-            if(vis[i]==0 && dfs(i,0,graph)==false){ 
-                return false;
+            else if(color[it] == co) {
+                return false; 
             }
         }
-        
         return true;
-          }
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<int> color(n+17,-1);
+        for(int i=0;i<n;i++)
+        {
+            if(color[i]==-1)
+            {
+                if(dfs(i,0,color,graph)==false)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 };
