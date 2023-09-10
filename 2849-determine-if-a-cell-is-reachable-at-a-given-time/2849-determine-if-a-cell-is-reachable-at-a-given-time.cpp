@@ -5,7 +5,6 @@ public:
         int y=abs(sy-fy);
         if(x==0 && y==0 && t==1) return false;
         int ans=min(x,y);
-        // return (min(xdiff, ydiff) + abs(xdiff - ydiff)) <= t
         if(ans+abs(x-y)<=t)
         {
             return true;
