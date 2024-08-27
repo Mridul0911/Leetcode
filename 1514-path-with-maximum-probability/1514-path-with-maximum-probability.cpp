@@ -2,7 +2,7 @@ class Solution {
 public:
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) 
     {
-        vector<vector<pair<int,double>>> adj(n);
+            vector<vector<pair<int,double>>> adj(n);
             int i=0;
             for(auto gg:edges)
             {
@@ -10,13 +10,10 @@ public:
                     adj[gg[1]].push_back({gg[0],succProb[i]});
                i++;            
             }
-            
-            
             vector<double> dis(n,0);
             priority_queue<pair<int,double>,vector<pair<int,double>>> pq;
             pq.push({1,start});
             dis[start]=1;
-            
             while(!pq.empty())
             {
                     int gg=pq.top().second;
